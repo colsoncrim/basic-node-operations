@@ -1,0 +1,29 @@
+1. Run the commands sort, wc and uniq on the commands.js file. Explain how they work
+   and what the output was.
+
+   - sort commands.js returned each line of the commands.js file in alphabetical order
+     starting with "break;"
+
+   - wc commands.js printed the number of lines in the file (37), the word count (73),
+     and byte count (800) in commands.js
+
+   - uniq commands.js returned exactly what I have printed in commands.js. If there were
+     any lines that were the same, uniq would remove it from the output.
+
+
+2. Using the pipe (|) connect at least two commands and run it on commands.js. Explain
+   what the output was and why the specific data was outputted.
+
+   I ran uniq commands.js | wc and the terminal returned 37  73  800. Since there are
+   no duplicate lines in this file, it has returned the same output that was displayed
+   when running wc commands.js.
+
+
+6. Given a string, reverse the order of characters in each word within a sentence while
+   maintaining the original word order and whitespace and return the string. To improve
+   your problem-solving experience, use the suggested functions to solve the problem.
+
+
+   const reverseString = (string) => {
+    return string.split('').reverse().join('');
+   }
