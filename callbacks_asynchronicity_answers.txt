@@ -1,0 +1,86 @@
+1. What is the difference between readdirSync and readdir?
+
+  readdirSync is Synchronous (blocking), meaning the code will not continue executing until
+  the current statement completes. readdir is asynchronous (non-blocking), meaning that the
+  actions occur out of order within the Javascript program. It does not have to wait for
+  the current line of code to execute before moving on to the next.
+
+
+
+2. What is the event loop and how does it handle asynchronous requests?
+
+  The event loop allows Node.js to process events sequentially from an event queue, and
+  perform non-blocking I/O operations. When an operation completes, Node calls a callback
+  function and executes it.
+
+
+
+3. Given the following code, specify whether the program is asynchronous and non-blocking
+   or synchronous and blocking or synchronous and non-blocking.
+
+   const fs = require('fs');
+   const file = fs.readFileSync('foo.txt');
+   console.log(file.toString());
+
+   This program is synchronous and blocking (indicated by 'fs.readFileSync').
+
+
+
+
+4. Given the following code, specify whether the program is asynchronous and non-blocking
+   or synchronous and blocking or synchronous and non-blocking.
+
+   const fs = require('fs');
+   fs.readFile('foo.txt', (err, file) => {
+   if (err) throw err;
+   console.log(file.toString());
+   });
+   console.log("test");
+
+   This program is asynchronous and non-blocking (indacated by the use of 'fs.readFile').
+
+
+
+5. In what order will the console.log statements execute in the code below?
+
+    const fs = require('fs');
+    fs.readFile('foo.txt', (err, file) => {
+    if (err) throw err;
+    console.log("A");
+    console.log("B")
+    });
+    console.log("C");
+
+  There is no specific order in which the code will execute. An Asynchronous function
+  actions occur out of order.
+
+
+
+
+6. setTimeout is a JavaScript function which calls a function after a set amount of
+   milliseconds. Given the following code, explain in what sequence the functions
+   will run and why.
+
+   The hello function will execute first followed by the greeting function. This is
+   because console.log("friend") is inside of the setTimeout function so it has to wait
+   100 milliseconds before executing. Since this is a non-blocking function, it will move on
+   and execute console.log("hello") first and then once the time is up, it will execute
+   console.log("friend").
+
+
+7. Create a function which utilizes a callback. Make sure to add console.log statements
+   to understand when your callback function is called.
+
+
+   function first() {
+    setTimeout( function() {
+      console.log(1);
+    }, 300 );
+   }
+
+   function second() {
+    console.log(2);
+   }
+
+   first();
+   second();
